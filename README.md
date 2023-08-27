@@ -19,8 +19,9 @@ Before proceeding, we have to gain a comprehensive understanding of the song dat
 # How It Works
 Follow these steps to set up and run the project on your local machine. This guide assumes you are already familiar with AWS services like IAM roles, Redshift clusters, and S3 access.
 1. Clone the repository to your local machine using the following command.
+   
    > https://github.com/Lewis-Chua/Udacity-Project-Data-Warehouse.git
-2. Make sure you have configured your AWS IAM role for Redshift and S3 access. Then you will have to create Redshift cluster. Refer to the following resources if you need assistance. 
+3. Make sure you have configured your AWS IAM role for Redshift and S3 access. Then you will have to create Redshift cluster. Refer to the following resources if you need assistance. 
 - [How to create AWS IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)
 - [How to create Redshift cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html)
 4. Open the files in Jupyter Notebook or Visual Studio Code for convenient editing and execution. 
