@@ -6,7 +6,7 @@ config = configparser.ConfigParser()
 config.read('dwh.cfg')
 
 # DROP TABLES
-
+# Drop existing tables to enable rerun without conflicts. 
 staging_events_table_drop = "DROP TABLE IF EXISTS staging_events"
 staging_songs_table_drop = "DROP TABLE IF EXISTS staging_songs"
 songplay_table_drop = "DROP TABLE IF EXISTS songplay"
@@ -16,7 +16,7 @@ artist_table_drop = "DROP TABLE IF EXISTS artist"
 time_table_drop = "DROP TABLE IF EXISTS time"
 
 # CREATE TABLES
-
+# Create tables with specified schema and column data types.
 staging_events_table_create= ("""
 CREATE TABLE IF NOT EXISTS staging_events 
 (
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS time
 """)
 
 # STAGING TABLES
-
+# Copy the data from S3 bucket into staging tables.
 staging_events_copy = ("""
 copy staging_events from {}
 credentials 'aws_iam_role={}'
@@ -133,7 +133,7 @@ json 'auto' region 'us-west-2';
 """).format(config.get('S3','SONG_DATA'),config.get('IAM_ROLE','ARN'))
 
 # FINAL TABLES
-
+# Insert data into dimension and fact tables from staging tables. 
 songplay_table_insert = ("""
 INSERT INTO songplay (start_time, user_id, level, song_id, artist_id, session_id, location, user_agent)
 select
@@ -200,7 +200,7 @@ from base
 """)
 
 # QUERY LISTS
-
+# Combine the SQL query for cleaner code organization. 
 create_table_queries = [staging_events_table_create, staging_songs_table_create, songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
 drop_table_queries = [staging_events_table_drop, staging_songs_table_drop, songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
 copy_table_queries = [staging_events_copy, staging_songs_copy]
