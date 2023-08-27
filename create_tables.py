@@ -4,18 +4,30 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def drop_tables(cur, conn):
+    """
+    Drop tables that are defined in the `drop_table_queries` list from file `sql_queries.py`.
+    """
+    
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def create_tables(cur, conn):
+    """
+    Create tables that are defined in the `create_table_queries` list from file `sql_queries.py`.
+    """
+    
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def main():
+    """
+    Reads database configuration from `dwh.cfg`, establishes a connection to the database, runs the drop and create function above, and then closes the connection.
+    """
+    
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
